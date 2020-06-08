@@ -1,0 +1,7 @@
+File from: [C:/Users/Artem/Desktop/node/Fool/public/images/raw/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}]
+
+File to: [-]
+
+Compression algorithm: [-]
+
+Description:  Directory is empty!: 

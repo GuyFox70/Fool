@@ -3,6 +3,7 @@ const config = require('config');
 const favicon = require('express-favicon');
 const path = require('path');
 const cssClean = require('./public/stylesheet/cleanCSS');
+const compressImages = require('./public/images/compressImage');
 
 const app = express();
 const http = require('http').createServer(app);
@@ -10,6 +11,7 @@ const io = require('socket.io')(http);
 
 const indexRouter = require('./router/index')
 cssClean();
+// compressImages('/raw/cards/', '/compress/');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -34,11 +36,11 @@ app.use(function(err, req, res, next) {
   
 });
 
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-});
+// io.on('connection', (socket) => {
+//   socket.on('chat message', (msg) => {
+//     io.emit('chat message', msg);
+//   });
+// });
 
 http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');

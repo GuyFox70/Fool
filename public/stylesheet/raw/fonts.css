@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'MetalManiaRegular';
+  src: url("/stylesheet/fonts/MetalMania-Regular.woff"),
+      url("/stylesheet/fonts/MetalMania-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoItalic';
+  src: url("/stylesheet/fonts/Roboto-Italic.woff"),
+      url("/stylesheet/fonts/Roboto-Italic.ttf");
+  font-style: normal;
+}

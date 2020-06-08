@@ -1,0 +1,9 @@
+.cards {
+  width: 8%;
+  height: 23%;
+  background: blue;
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
