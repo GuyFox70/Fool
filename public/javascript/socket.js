@@ -1,45 +1,88 @@
 (() => {
+  const wrapper = document.querySelector('.wrapper');
   const startGame = document.querySelector('.start-game');
   const startButton = document.querySelector('.start-game-button');
-  const cards = document.querySelectorAll('.cards');
+  const images = document.querySelector('#img');
+  const arrayCards = images.getAttribute('data-images');
+  
 
-  let topOdd = 10;
-  let leftOdd = 90;
+  let [topOdd, leftOdd] = [10, 90];
+  let [topEven, leftEven] = [70, 10];
+  let zIndex = 0;
+  
+  let j = 0;
 
-  let topEven = 70;
-  let leftEven = 10;
+  const createdCards = createCards(arrayCards);
+  const gameCards = mixCards(createdCards);
+
+  for (let elem of gameCards) {
+    wrapper.appendChild(elem);
+  }
 
   startButton.addEventListener('click', () => {
     startGame.classList.add('start-game-hide');
-    getLocationCards(cards);
+    getLocationCards(gameCards);
+  });
+
+  wrapper.addEventListener('click', (e) => {
+    console.log(e.target);
   });
 
   function getLocationCards(arr) {
-    for (let i = 0, j = 0; i < arr.length; i++) {
-      if (i % 2 != 0) {
-        getLocationForOddCards(arr[i]);
-        j++;
-      } else {
-        getLocationForEvenCards(arr[i]);
-        j++;
-      }
-
-      if (j > 11) return;
+    j++;
+    
+    if ((arr.length - j) % 2 != 0) {
+      getLocationForOddCards(arr[arr.length - j]);
+    } else {
+      getLocationForEvenCards(arr[arr.length - j]);
     }
+ 
+    if (j < 12 ) getLocationCards(arr);
+
   }
 
   function getLocationForOddCards(card) {
-    leftOdd = leftOdd - 2;
-    
+    leftOdd = leftOdd - 2.5;
+
     card.style.top = topOdd + '%';
     card.style.left = leftOdd + '%';
   }
 
   function getLocationForEvenCards(card) {
-    leftEven = leftEven + 2;
+    leftEven = leftEven + 2.5;
+    zIndex++;
     
     card.style.top = topEven + '%';
     card.style.left = leftEven + '%';
+    card.style.zIndex = zIndex;
+  }
+
+  function mixCards(cards) {
+    let mixArray = [];
+    
+    while (cards.length > 0) {
+      mixArray.push(cards.splice(getRandomInt(0, cards.length - 1), 1)[0]);
+    }
+    
+    return mixArray;
+  }
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function createCards(arr) {
+    let elements = [];
+
+    for (let elem of  JSON.parse(arr)) {
+
+      let img = document.createElement('img');
+        img.src = `/images/compress/cards/${elem}`;
+        img.classList.add('cards');
+
+      elements.push(img);
+    }
+    return elements;
   }
   // const socket = io();
   // const form = document.querySelector('.form');

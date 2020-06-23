@@ -7,14 +7,12 @@ html(lang="en")
     link(rel="stylesheet", href="stylesheet/style.css")
     title Fool
   body
+    div(class="hidden" data-images= images id="img")
     section(class="wrapper")
       div(class="start-game")
         h1(class="start-game-name") Fool
         button(class="start-game-button") Start
-      -let i = -1
-      while i < length
-        -i++
-        div(class="cards")
-          //- img(src=`/images/compress/cards/${images[i]}`)
+      //- div(class="cards")
+        //- img(src='/images/compress/cards/ace_bube.png')
   script(src="/socket.io/socket.io.js")
   script(src="javascript/socket.js")
