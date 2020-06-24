@@ -11,7 +11,7 @@ const io = require('socket.io')(http);
 
 const indexRouter = require('./router/index')
 cssClean();
-// compressImages('/raw/cards/', '/compress/');
+// compressImages('/raw/', '/background/');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

@@ -5,6 +5,7 @@
   position: absolute;
   top: 8px;
   left: 8px;
+  border-radius: 10px;
 }
 .hidden {
   display: none;

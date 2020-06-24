@@ -8,53 +8,87 @@
 
   let [topOdd, leftOdd] = [10, 90];
   let [topEven, leftEven] = [70, 10];
-  let zIndex = 0;
+
+  let [leftMove, topMove] = [23, 33];
+
+  let zIndexForGamer = 0;
+  let zIndexForMove = 0;
   
   let j = 0;
 
-  const createdCards = createCards(arrayCards);
-  const gameCards = mixCards(createdCards);
-
-  for (let elem of gameCards) {
-    wrapper.appendChild(elem);
-  }
+  const createdCards = createCards(arrayCards, wrapper);
+  const gameCards = mixCards(JSON.parse(arrayCards));
+ 
+  // for (let elem of gameCards) {
+  //   wrapper.appendChild(elem);
+  // }
 
   startButton.addEventListener('click', () => {
     startGame.classList.add('start-game-hide');
-    getLocationCards(gameCards);
+    getLocationCards(createdCards);
   });
 
   wrapper.addEventListener('click', (e) => {
-    console.log(e.target);
+    // console.log(e.target);
+    makeMove(e.target);
   });
+
+  function makeMove(target) {
+
+    if (target.getAttribute('data-gamer') == 'gamer_1') {
+      zIndexForMove++;
+      leftMove += 2;
+
+      target.style.top = topMove + '%';
+      target.style.left = leftMove + '%';
+      
+      target.style.zIndex = zIndexForMove;
+
+    } if (target.getAttribute('data-gamer') == 'gamer_2') {
+      zIndexForMove++;
+      leftMove += 2;
+
+      target.style.top = topMove + '%';
+      target.style.left = leftMove +'%';
+
+      target.style.zIndex = zIndexForMove;
+
+    }
+  }
 
   function getLocationCards(arr) {
     j++;
     
     if ((arr.length - j) % 2 != 0) {
-      getLocationForOddCards(arr[arr.length - j]);
+      getLocationForOddCards(arr[arr.length - j], gameCards);
     } else {
-      getLocationForEvenCards(arr[arr.length - j]);
+      getLocationForEvenCards(arr[arr.length - j], gameCards);
     }
  
     if (j < 12 ) getLocationCards(arr);
 
   }
 
-  function getLocationForOddCards(card) {
+  function getLocationForOddCards(card, gameCards) {
     leftOdd = leftOdd - 2.5;
 
     card.style.top = topOdd + '%';
     card.style.left = leftOdd + '%';
+    card.style.background = 'none';
+    card.src = `/images/compress/cards/${gameCards.splice(gameCards.length - j, 1)[0]}`;
+    card.setAttribute('data-gamer', 'gamer_2');
   }
 
   function getLocationForEvenCards(card) {
     leftEven = leftEven + 2.5;
-    zIndex++;
+    zIndexForGamer++;
     
     card.style.top = topEven + '%';
     card.style.left = leftEven + '%';
-    card.style.zIndex = zIndex;
+    card.style.zIndex = zIndexForGamer;
+    card.style.background = 'none';
+    card.src = `/images/compress/cards/${gameCards.splice(gameCards.length - j, 1)[0]}`;
+    card.setAttribute('data-gamer', 'gamer_1');
   }
 
   function mixCards(cards) {
@@ -71,15 +105,16 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function createCards(arr) {
+  function createCards(arr, parent) {
     let elements = [];
 
     for (let elem of  JSON.parse(arr)) {
 
       let img = document.createElement('img');
-        img.src = `/images/compress/cards/${elem}`;
+        img.src = '/images/background/back.jpg';
         img.classList.add('cards');
 
+      parent.appendChild(img);
       elements.push(img);
     }
     return elements;
