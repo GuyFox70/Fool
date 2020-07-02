@@ -1,0 +1,70 @@
+.start-game {
+  width: 100%;
+  height: 100%;
+  background: rgba(128, 128, 128, 1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.start-game__form {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+  border-radius: 10px;
+
+  .form__heading {
+    font-family: 'MetalManiaRegular';
+    font-size: 75px;
+    letter-spacing: 5px;
+    color: rgb(255, 255, 255);
+
+    margin: 10px 0 20px 0;
+  }
+
+  .form__field-name {
+    margin-bottom: 20px;
+    color: white;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+  
+      font-family: 'RobotoItalic';
+      font-size: 18px;
+    }
+
+    input[name="name"] {
+      border: 0;
+      outline: 0;
+      border-radius: 5px;
+      padding: 10px;
+      box-sizing: border-box;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+
+      font-family: 'RobotoItalic';
+    }
+  }
+
+  .form__button-start {
+    width: 45%;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+    height: 30px;
+
+    font-family: 'RobotoItalic';
+    font-size: 18px;
+  }
+}

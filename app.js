@@ -36,12 +36,19 @@ app.use(function(err, req, res, next) {
   
 });
 
-// io.on('connection', (socket) => {
-//   socket.on('chat message', (msg) => {
-//     io.emit('chat message', msg);
-//   });
-// });
-
 http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
+
+const sockets = [];
+
+io.on('connection', (socket) => {
+  const user = socket.id;
+  sockets.push(socket);
+
+  for (let elem of sockets) {
+    if (user == elem.id) {
+      // console.log('yes');
+    }
+  }
+ });

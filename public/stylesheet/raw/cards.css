@@ -1,12 +1,21 @@
-.cards {
+.deck_of_cards {
   display: block;
   width: 115px;
   height: 23%;
   position: absolute;
   top: 8px;
   left: 8px;
+}
+.cards {
   border-radius: 10px;
 }
-.hidden {
+.button-bat {
+  cursor: pointer;
+  width: 100px;
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+}
+.start-game--hide {
   display: none;
 }

@@ -10,9 +10,12 @@ html(lang="en")
     div(class="hidden" data-images= images id="img")
     section(class="wrapper")
       div(class="start-game")
-        h1(class="start-game-name") Fool
-        button(class="start-game-button") Start
-      //- div(class="cards")
-        //- img(src='/images/compress/cards/ace_bube.png')
+        form(class="start-game__form")
+          h1(class="form__heading") Fool
+          div(class="form__field-name")
+            label Name
+            input(type="text" placeholder="Enter your name" name="name" autofocus)
+          button(class="form__button-start") Start
+      button(class="button-bat") Bat
   script(src="/socket.io/socket.io.js")
   script(src="javascript/socket.js")

@@ -1,13 +1,27 @@
 (() => {
+  const socket = io();
+
   const wrapper = document.querySelector('.wrapper');
   const startGame = document.querySelector('.start-game');
-  const startButton = document.querySelector('.start-game-button');
+  const startButton = document.querySelector('.form__button-start');
+
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
-  
 
-  let [topOdd, leftOdd] = [10, 90];
-  let [topEven, leftEven] = [70, 10];
+  socket.on('connect', () => {
+    
+  });
+
+  socket.emit('createMessage', {
+    
+  });
+  
+  socket.on('newMessage', (msg) => {
+    console.log(msg);
+  });
+
+  let [topOdd, leftOdd] = [5, 90];
+  let [topEven, leftEven] = [72, 10];
 
   let [leftMove, topMove] = [23, 33];
 
@@ -19,13 +33,11 @@
   const createdCards = createCards(arrayCards, wrapper);
   const gameCards = mixCards(JSON.parse(arrayCards));
  
-  // for (let elem of gameCards) {
-  //   wrapper.appendChild(elem);
-  // }
-
-  startButton.addEventListener('click', () => {
-    startGame.classList.add('start-game-hide');
-    getLocationCards(createdCards);
+  startButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    startGame.classList.add('start-game--hide');
+    givingOfCards(createdCards, gameCards);
   });
 
   wrapper.addEventListener('click', (e) => {
@@ -44,7 +56,7 @@
       
       target.style.zIndex = zIndexForMove;
 
-    } if (target.getAttribute('data-gamer') == 'gamer_2') {
+    } else if (target.getAttribute('data-gamer') == 'gamer_2') {
       zIndexForMove++;
       leftMove += 2;
 
@@ -56,20 +68,29 @@
     }
   }
 
-  function getLocationCards(arr) {
+  function givingOfCards(arr, gameCards) {
     j++;
     
     if ((arr.length - j) % 2 != 0) {
-      getLocationForOddCards(arr[arr.length - j], gameCards);
+      givingOfOddCards(arr[arr.length - j], gameCards);
     } else {
-      getLocationForEvenCards(arr[arr.length - j], gameCards);
+      givingOfEvenCards(arr[arr.length - j], gameCards);
     }
  
-    if (j < 12 ) getLocationCards(arr);
+    if (j < 12 ) {
+      givingOfCards(arr, gameCards);
+    } else {
+      j++;
+
+      const trump_card = arr[arr.length - j];
+        trump_card.src = `/images/compress/cards/${gameCards.splice(-1, 1)[0]}`;
+        trump_card.setAttribute('data-trump', 'trump');
+        trump_card.style.left = '150px';
+    }
 
   }
 
-  function getLocationForOddCards(card, gameCards) {
+  function givingOfOddCards(card, gameCards) {
     leftOdd = leftOdd - 2.5;
 
     card.style.top = topOdd + '%';
@@ -79,7 +100,7 @@
     card.setAttribute('data-gamer', 'gamer_2');
   }
 
-  function getLocationForEvenCards(card) {
+  function givingOfEvenCards(card, gameCards) {
     leftEven = leftEven + 2.5;
     zIndexForGamer++;
     
@@ -112,6 +133,7 @@
 
       let img = document.createElement('img');
         img.src = '/images/background/back.jpg';
+        img.classList.add('deck_of_cards');
         img.classList.add('cards');
 
       parent.appendChild(img);
@@ -119,22 +141,5 @@
     }
     return elements;
   }
-  // const socket = io();
-  // const form = document.querySelector('.form');
-  // const input = form.querySelector('#m');
-  // const ul = document.querySelector('#messages');
 
-  // form.addEventListener('submit', (e) => {
-  //   e.preventDefault();
-
-  //   socket.emit('chat message', input.value);
-  //   input.value = '';
-  //   return false;
-  // });
-
-  // socket.on('chat message', (msg) => {
-  //   const li = document.createElement('li');
-  //     li.innerHTML = msg;
-  //   ul.appendChild(li);
-  // });
 })();

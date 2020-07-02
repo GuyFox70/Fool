@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();  
 
-const arrFiles = require('../mymodels/getListCards');
+const arrFiles = require('../utils/getListCards');
 
 router.get('/', (req, res) => {
   res.render('index', {
