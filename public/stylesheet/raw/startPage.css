@@ -1,16 +1,56 @@
-.start-game {
-  width: 100%;
+.top {
+  height: 55px;
+  margin-bottom: 10px;
+}
+.top .top__navigation {
+  width: 90%;
   height: 100%;
-  background: #808080;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 5px #000000;
+  border-radius: 0 0 10px 10px;
+  background: #F7E543;
+}
+.top .navigation__item-label,
+.top .navigation__item-getIn {
+  width: 15%;
+}
+.top .navigation__item-label a,
+.top .navigation__item-getIn a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #283436;
+  font-family: 'RobotoItalic';
+  font-size: 28px;
+  transition: color 0.3s ease;
+}
+.top .navigation__item-label a:hover,
+.top .navigation__item-getIn a:hover {
+  color: #ffff;
+  transition: color 0.4 ease;
+}
+.beginner {
+  width: 100%;
+  height: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
 }
-.start-game__form {
+@keyframes form {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.showForm {
+  animation: form 3s linear;
+}
+.beginner__form {
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -19,24 +59,24 @@
   box-shadow: 1px 1px 5px #000000;
   border-radius: 10px;
 }
-.start-game__form .form__heading {
+.beginner__form .form__heading {
   font-family: 'MetalManiaRegular';
   font-size: 75px;
   letter-spacing: 5px;
   color: #ffffff;
   margin: 10px 0 20px 0;
 }
-.start-game__form .form__field-name {
+.beginner__form .form__field-name {
   margin-bottom: 20px;
   color: white;
 }
-.start-game__form .form__field-name label {
+.beginner__form .form__field-name label {
   display: block;
   margin-bottom: 10px;
   font-family: 'RobotoItalic';
   font-size: 18px;
 }
-.start-game__form .form__field-name input[name="name"] {
+.beginner__form .form__field-name input[name="name"] {
   border: 0;
   outline: 0;
   border-radius: 5px;
@@ -45,7 +85,7 @@
   box-shadow: 1px 1px 5px #000000;
   font-family: 'RobotoItalic';
 }
-.start-game__form .form__button-start {
+.beginner__form .form__button-get-in {
   width: 45%;
   border: 0;
   outline: 0;
@@ -53,6 +93,7 @@
   margin-bottom: 20px;
   box-shadow: 1px 1px 5px #000000;
   height: 30px;
+  cursor: pointer;
   font-family: 'RobotoItalic';
   font-size: 18px;
 }

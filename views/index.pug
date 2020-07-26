@@ -7,15 +7,22 @@ html(lang="en")
     link(rel="stylesheet", href="stylesheet/style.css")
     title Fool
   body
-    div(class="hidden" data-images= images id="img")
     section(class="wrapper")
-      div(class="start-game")
-        form(class="start-game__form")
+      header(class="top")
+        ul(class="top__navigation")
+          li(class="navigation__item-label")
+            a(href="/") Fool
+          li(class="navigation__item-getIn")
+            a Get in
+      div(class="beginner" style="opacity: 0;")
+        form(class="beginner__form")
           h1(class="form__heading") Fool
           div(class="form__field-name")
             label Name
-            input(type="text" placeholder="Enter your name" name="name" autofocus)
-          button(class="form__button-start") Start
-      button(class="button-bat") Bat
-  script(src="/socket.io/socket.io.js")
-  script(src="javascript/socket.js")
+            input(type="text" placeholder="Enter your name" name="name")
+          input(type="submit" value="Get in" class="form__button-get-in")
+      div(class="listRooms hide")
+  script(src="javascript/appearForm.js")
+  script(src="javascript/showList.js")
+  //- script(src="/socket.io/socket.io.js")
+  //- script(src="javascript/socket.js")

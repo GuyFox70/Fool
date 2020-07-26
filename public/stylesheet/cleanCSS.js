@@ -4,10 +4,11 @@ const CleanCSS = require('clean-css');
 const options = {level: 2};
 
 const arrCss = [
-  '/raw/core.css',
   '/raw/fonts.css',
   '/raw/startPage.css',
-  '/raw/cards.css'
+  '/raw/cards.css',
+  '/raw/gameField.css',
+  '/raw/core.css'
 ];
 
 

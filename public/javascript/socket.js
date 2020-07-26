@@ -2,23 +2,16 @@
   const socket = io();
 
   const wrapper = document.querySelector('.wrapper');
-  const startGame = document.querySelector('.start-game');
-  const startButton = document.querySelector('.form__button-start');
+  const beginner = document.querySelector('.beginner');
+  const getIn = document.querySelector('.form__button-get-in');
+  const inputName = beginner.querySelector('input[name="name"]');
+  const nameGamer = wrapper.querySelector('.nameGamer');
+  const startButton = wrapper.querySelector('.start__button');
 
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
 
-  socket.on('connect', () => {
-    
-  });
-
-  socket.emit('createMessage', {
-    
-  });
-  
-  socket.on('newMessage', (msg) => {
-    console.log(msg);
-  });
+  let me = {};
 
   let [topOdd, leftOdd] = [5, 90];
   let [topEven, leftEven] = [72, 10];
@@ -32,18 +25,41 @@
 
   const createdCards = createCards(arrayCards, wrapper);
   const gameCards = mixCards(JSON.parse(arrayCards));
+
+  socket.on('have not place', (msg) => {
+    console.log(msg);
+  });
  
-  startButton.addEventListener('click', (e) => {
+  getIn.addEventListener('click', (e) => {
+  
+    beginner.classList.add('hide');
+
+    me.name = inputName.value;
+    nameGamer.innerText = inputName.value;
+
+    createAvatar(wrapper);
+    console.log(location);
+    inputName.value = '';
+
+    socket.emit('login', true);
     e.preventDefault();
-    
-    startGame.classList.add('start-game--hide');
-    givingOfCards(createdCards, gameCards);
+   
+  });
+
+  startButton.addEventListener('click', () => {
+    socket.emit('getRival', true);
+
+    startButton.parentElement.classList.add('hide');
   });
 
   wrapper.addEventListener('click', (e) => {
-    // console.log(e.target);
     makeMove(e.target);
   });
+
+
+
+  // created function down
+
 
   function makeMove(target) {
 
@@ -131,8 +147,8 @@
 
     for (let elem of  JSON.parse(arr)) {
 
-      let img = document.createElement('img');
-        img.src = '/images/background/back.jpg';
+      const img = document.createElement('img');
+        img.src = '/images/compress/background/back.jpg';
         img.classList.add('deck_of_cards');
         img.classList.add('cards');
 
@@ -140,6 +156,13 @@
       elements.push(img);
     }
     return elements;
+  }
+
+  function createAvatar(parent) {
+    const img = document.createElement('img');
+      img.src = '/images/compress/defaultAvatar.png';
+      img.classList.add('gamerDefaultAvatar');
+    parent.appendChild(img);
   }
 
 })();
