@@ -8,6 +8,7 @@ const arrCss = [
   '/raw/startPage.css',
   '/raw/cards.css',
   '/raw/gameField.css',
+  '/raw/rooms.css',
   '/raw/core.css'
 ];
 

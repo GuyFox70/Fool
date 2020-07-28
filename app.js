@@ -69,9 +69,9 @@ io.on('connection', (socket) => {
 
   socket.emit('get id of socket', original);
 
-  socket.on('send client data', (msg) => {
+  socket.on('send name', (msg) => {
     // user = msg;
-    // console.log(user);
+    console.log(msg);
   });
 
   socket.on('getRival', (msg) => {

@@ -26,7 +26,7 @@
   const createdCards = createCards(arrayCards, wrapper);
   const gameCards = mixCards(JSON.parse(arrayCards));
 
-  socket.on('have not place', (msg) => {
+  socket.on('send name', (msg) => {
     console.log(msg);
   });
  

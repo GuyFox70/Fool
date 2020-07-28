@@ -14,11 +14,13 @@
   background: #F7E543;
 }
 .top .navigation__item-label,
-.top .navigation__item-getIn {
+.top .navigation__item-getInGetOut,
+.top .navigation__item-rooms {
   width: 15%;
 }
 .top .navigation__item-label a,
-.top .navigation__item-getIn a {
+.top .navigation__item-getInGetOut a,
+.top .navigation__item-rooms a {
   display: block;
   width: 100%;
   text-align: center;
@@ -28,7 +30,8 @@
   transition: color 0.3s ease;
 }
 .top .navigation__item-label a:hover,
-.top .navigation__item-getIn a:hover {
+.top .navigation__item-getInGetOut a:hover,
+.top .navigation__item-rooms a:hover {
   color: #ffff;
   transition: color 0.4 ease;
 }
@@ -48,7 +51,7 @@
   }
 }
 .showForm {
-  animation: form 3s linear;
+  animation: form 1s linear;
 }
 .beginner__form {
   width: 30%;

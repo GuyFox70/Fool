@@ -9,20 +9,14 @@ html(lang="en")
   body
     section(class="wrapper")
       header(class="top")
-        ul(class="top__navigation")
-          li(class="navigation__item-label")
-            a(href="/") Fool
-          li(class="navigation__item-getIn")
-            a Get in
-      div(class="beginner" style="opacity: 0;")
-        form(class="beginner__form")
+        include ./blocks/menu.pug
+      div(class="beginner" style="opacity: 0; display: none")
+        form(class="beginner__form" action="./rooms" method="POST")
           h1(class="form__heading") Fool
           div(class="form__field-name")
             label Name
             input(type="text" placeholder="Enter your name" name="name")
           input(type="submit" value="Get in" class="form__button-get-in")
-      div(class="listRooms hide")
-  script(src="javascript/appearForm.js")
-  script(src="javascript/showList.js")
   //- script(src="/socket.io/socket.io.js")
+  script(src="javascript/appearForm.js")
   //- script(src="javascript/socket.js")

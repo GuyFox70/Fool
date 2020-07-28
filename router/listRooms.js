@@ -1,8 +1,14 @@
 const express = require('express');
-const router = express.Router();  
+const router = express.Router();
+const bodyParser = require("body-parser");
 
-router.get('/', (req, res) => {
-  res.render('rooms');
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+
+router.post('/', urlencodedParser, (req, res) => {
+
+  res.render('rooms', {
+    userName: req.body.name
+  });
 });
 
 module.exports = router;

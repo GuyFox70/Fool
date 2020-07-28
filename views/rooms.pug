@@ -1,4 +1,20 @@
-ul
-each val in ['room 1', 'room 2', 'room 3', 'room 4', 'room 5', 'room 6', 'room 7']
-  li
-    a(href="#")= val
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="stylesheet/normalize.css")
+    link(rel="stylesheet", href="stylesheet/style.css")
+    title Fool
+  body
+    section(class="wrapper")
+      header(class="top")
+        include ./blocks/menu.pug
+      div(class="listRooms")
+        p(class="listRooms__userName")= userName
+        ul
+          each val in ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6', 'Room 7']
+            li(class="listRooms__items")
+              a= val
+  script(src="/socket.io/socket.io.js")
+  //- script(src="javascript/socket.js")

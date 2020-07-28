@@ -1,0 +1,11 @@
+ul(class="top__navigation")
+  li(class="navigation__item-label")
+    a(href="/") Fool
+  if userName
+    li(class="navigation__item-rooms")
+      a(href="/rooms") Rooms
+  li(class="navigation__item-getInGetOut")
+    if userName
+      a Get out
+    else
+      a Get in
