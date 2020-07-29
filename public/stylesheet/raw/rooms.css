@@ -10,7 +10,7 @@
   font-family: 'RobotoItalic';
   font-size: 25px;
 }
-.listRooms__items {
+.rooms__items {
   width: 150px;
   height: 30px;
   margin-bottom: 25px;
@@ -23,7 +23,7 @@
   align-items: center;
   overflow: hidden;
 }
-.listRooms__items a {
+.rooms__items a {
   width: 100%;
   color: #fff;
   text-align: center;
@@ -31,7 +31,7 @@
   font-size: 20px;
   font-weight: 200;
 }
-.listRooms__items a:after {
+.rooms__items a:after {
   content: "";
   height: 200%;
   left: -155%;
@@ -43,14 +43,14 @@
   background: rgba(255, 255, 255, 0.13);
   background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0) 100%);
 }
-.listRooms__items a:hover:after {
+.rooms__items a:hover:after {
   left: 150%;
   opacity: 1;
   top: -50%;
-  transition-duration: 2s, 0.7s, 0.15s;
+  transition-duration: 0.7s, 0.7s, 0.15s;
   transition-property: left, top, opacity;
   transition-timing-function: ease;
 }
-.listRooms__items a:active:after {
+.rooms__items a:active:after {
   opacity: 0;
 }

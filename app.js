@@ -10,7 +10,8 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const indexRouter = require('./router/index');
-const roomsRouter = require('./router/listRooms')
+const roomsRouter = require('./router/routerListRooms');
+const game= require('./router/routerGame');
 cssClean();
 // compressImages('/raw/', '/compress/defaultAvatar');
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 app.use('/', indexRouter);
 app.use('/rooms', roomsRouter);
+app.use('/game', game);
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -42,37 +44,23 @@ http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
 
-let users;
-let user = {};
-let rival = {};
-
 io.on('connection', (socket) => {
   const original = socket.id;
 
-  socket.on('login', (msg) => {
+  socket.on('nameRoom', (msg) => {
   
-    socket.join('room 237', () => {
-      let rooms = Object.keys(socket.rooms);
-      // console.log(rooms); // [ <socket.id>, 'room 237' ]
-  
-      if ((io.nsps['/'].adapter.rooms["room 237"].length > 2)) {
-        socket.emit('have not place', 'sorry you need create new room!!!');
-        socket.join('room 238', () => {
-          console.log('You create a new room!');
-        });
+    socket.join(msg, () => {
+      if (io.nsps['/'].adapter.rooms[msg].length > 2) {
+        socket.leave(msg);
+
+        socket.emit('busy', false); 
       }
     });
     
   });
 
-  sockets = Object.keys(io.sockets.connected);
+  // sockets = Object.keys(io.sockets.connected);
 
-  socket.emit('get id of socket', original);
-
-  socket.on('send name', (msg) => {
-    // user = msg;
-    console.log(msg);
-  });
 
   socket.on('getRival', (msg) => {
     if (msg) rival = getRandomMember(sockets, original);
