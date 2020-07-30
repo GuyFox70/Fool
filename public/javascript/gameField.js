@@ -1,12 +1,11 @@
 (() => {
   const socket = io();
 
-  const wrapper = document.querySelector('.wrapper');
+  const field = document.querySelector('.field');
   const beginner = document.querySelector('.beginner');
   const getIn = document.querySelector('.form__button-get-in');
-  const inputName = beginner.querySelector('input[name="name"]');
-  const nameGamer = wrapper.querySelector('.nameGamer');
-  const startButton = wrapper.querySelector('.start__button');
+  const nameGamer = field.querySelector('.nameGamer');
+  const startButton = field.querySelector('.start__button');
 
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
@@ -23,8 +22,10 @@
   
   let j = 0;
 
-  const createdCards = createCards(arrayCards, wrapper);
+  const cards = createCards(arrayCards, field);
   const gameCards = mixCards(JSON.parse(arrayCards));
+
+  createCards(arrayCards, field);
 
   socket.on('send name', (msg) => {
     console.log(msg);
@@ -37,8 +38,7 @@
     me.name = inputName.value;
     nameGamer.innerText = inputName.value;
 
-    createAvatar(wrapper);
-    console.log(location);
+    createAvatar(field);
     inputName.value = '';
 
     socket.emit('login', true);
@@ -52,7 +52,7 @@
     startButton.parentElement.classList.add('hide');
   });
 
-  wrapper.addEventListener('click', (e) => {
+  field.addEventListener('click', (e) => {
     makeMove(e.target);
   });
 

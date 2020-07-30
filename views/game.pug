@@ -7,13 +7,14 @@ html(lang="en")
     link(rel="stylesheet", href="stylesheet/style.css")
     title Fool
   body
-    div(class="hidden" data-images= images id="img")
+    div(class="hide" data-images= images id="img")
     section(class="wrapper")
       header(class="top")
         include ./blocks/menu.pug
-      div(class="start")
-        button(class="start__button") Start game
-      p(class="nameGamer")
-      button(class="button-bat") Bat
+      div(class="field")
+        //- div(class="start")
+        //-   button(class="start__button") Start game
+        //- p(class="nameGamer")
+        //- button(class="button-bat") Bat
   script(src="/socket.io/socket.io.js")
-  script(src="javascript/socket.js")
+  script(src="/javascript/gameField.js")
