@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.post('/', urlencodedParser, (req, res) => {
-
+  req.session.name = req.body.name;
+  
   res.render('rooms', {
     userName: req.body.name,
     list: ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6', 'Room 7']

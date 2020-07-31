@@ -2,6 +2,8 @@ const express = require('express');
 const config = require('config');
 const favicon = require('express-favicon');
 const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const cssClean = require('./public/stylesheet/cleanCSS');
 const compressImages = require('./public/images/compressImage');
 
@@ -20,6 +22,21 @@ app.set('view engine', 'pug');
 
 app.use(favicon(__dirname + '/public/images/favicon/favicon.ico'));
 app.use(express.static(path.join(__dirname + '/public')));
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    secure: false,
+    maxAge: null
+  },
+  // store: new MongoStore({
+  //   url:'mongodb+srv://admin1988:Anastasia2006@cluster0.wzqyi.mongodb.net/fool?retryWrites=true&w=majority'
+  // })
+}))
 
 app.use('/', indexRouter);
 app.use('/rooms', roomsRouter);

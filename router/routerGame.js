@@ -4,7 +4,8 @@ const gameCards = require('../utils/getListCards');
 
 router.get('/', (req, res) => {
   res.render('game', {
-    images: gameCards()
+    images: gameCards(),
+    userName: req.session.name
   });
 });
 
