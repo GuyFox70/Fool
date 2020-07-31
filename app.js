@@ -32,10 +32,7 @@ app.use(session({
     httpOnly: true,
     secure: false,
     maxAge: null
-  },
-  // store: new MongoStore({
-  //   url:'mongodb+srv://admin1988:Anastasia2006@cluster0.wzqyi.mongodb.net/fool?retryWrites=true&w=majority'
-  // })
+  }
 }))
 
 app.use('/', indexRouter);
