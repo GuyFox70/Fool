@@ -8,13 +8,7 @@ html(lang="en")
     title Fool
   body
     section(class="wrapper")
-      header(class="top")
-        include ./blocks/menu.pug
-      div(class="beginner" style="opacity: 0; display: none")
-        form(class="beginner__form" action="./rooms" method="POST")
-          h1(class="form__heading") Fool
-          div(class="form__field-name")
-            label Name
-            input(type="text" placeholder="Enter your name" name="name")
-          input(type="submit" value="Get in" class="form__button-get-in")
+      include ./blocks/top.pug
+      include ./blocks/middle.pug   
+      include ./blocks/bottom.pug
   script(src="javascript/appearForm.js")

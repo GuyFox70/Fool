@@ -1,0 +1,9 @@
+header(class="top")
+  nav(class="top__navigation")
+    a(href="/" class="top__navigation__linkManePage") Fool
+    if userName
+      a(href="/rooms" class="top__navigation__linkRooms") Rooms
+    if userName
+      a(class="top__navigation__logOut") Log out
+    else
+      a(class="top__navigation__logIn") Log in
