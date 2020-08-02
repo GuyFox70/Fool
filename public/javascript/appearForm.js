@@ -1,8 +1,10 @@
 (function() {
   const beginner = document.querySelector('.beginner');
-  const entry = document.querySelector('.navigation__item-getInGetOut a');
+  const logIn = document.querySelector('.top__navigation__logIn');
+  const introduce = document.querySelector('.middle__introduce');
   
-  entry.addEventListener('click', () => {
+  logIn.addEventListener('click', () => {
+    introduce.classList.add('hide');
     beginner.removeAttribute('style');
     beginner.classList.add('showForm');
   });

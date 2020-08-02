@@ -1,6 +1,51 @@
 .middle {
   grid-area: middle;
 }
+
+.middle__introduce {
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 100%;
+  grid-template-areas: "nameGame picture";
+}
+
+.introduce__name-game {
+  position: relative;
+}
+
+.introduce__name-game__name {
+  color: white;
+
+  font-family: 'RobotoItalic';
+  font-size: 35px;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.introduce__name-game {
+  grid-area: nameGame;
+
+  width: 100%;
+  height: 100%;
+  background: url("../../images/compress/icon-fool.png") no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.introduce__picture {
+  grid-area: picture;
+
+  width: 100%;
+  height: 100%;
+  background: url("../../images/compress/joker.png") no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .beginner {
   width: 100%;
   height: 85%;
