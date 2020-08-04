@@ -14,7 +14,7 @@
 }
 
 .rooms__items {
-  width: 150px;
+  width: 250px;
   height: 30px;
   margin-bottom: 25px;
   background: #273439;
@@ -23,12 +23,12 @@
   position: relative;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   overflow: hidden;
 
   a {
-    width: 100%;
+    // width: 100%;
     color: #fff;
     text-align: center;
 
@@ -61,5 +61,10 @@
   
   a:active:after {
     opacity: 0;
+  }
+
+  .rooms__items__status {
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
   }
 }
