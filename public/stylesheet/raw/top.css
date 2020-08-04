@@ -14,8 +14,12 @@
   display: flex;
   align-items: center;
 }
-.top .top__navigation .top__navigation__logIn {
+.top .top__navigation .top__navigation__logIn,
+.top .top__navigation .top__navigation__logOut {
   margin-left: auto;
+}
+.top .top__navigation .top__navigation__linkRooms {
+  margin-left: 35px;
 }
 .top .top__navigation a {
   display: block;

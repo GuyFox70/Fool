@@ -8,13 +8,8 @@ html(lang="en")
     title Fool
   body
     section(class="wrapper")
-      header(class="top")
-        include ./blocks/menu.pug
-      div(class="listRooms")
-        p(class="listRooms__userName")= userName
-        ul(class="listRooms__rooms" data-listRooms= list)
-          each val in list
-            li(class="rooms__items")
-              a(href="./game" class="rooms__link")= val
+      include ./blocks/top.pug
+      include ./blocks/listRooms.pug
+      include ./blocks/bottom.pug
   script(src="/socket.io/socket.io.js")
   script(src="javascript/listRooms.js")

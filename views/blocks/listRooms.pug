@@ -1,0 +1,7 @@
+main(class="middle")  
+  div(class="listRooms")
+    p(class="listRooms__userName")= userName
+    ul(class="listRooms__rooms" data-listRooms= list)
+      each val in list
+        li(class="rooms__items")
+          a(href="./game" class="rooms__link")= val
