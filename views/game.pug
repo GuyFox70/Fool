@@ -9,12 +9,13 @@ html(lang="en")
   body
     div(class="hide" data-images= images id="img")
     section(class="wrapper")
-      header(class="top")
-        include ./blocks/menu.pug
-      div(class="field")
-        //- div(class="start")
-        //-   button(class="start__button") Start game
-        p(class="nameGamer")= userName
-        //- button(class="button-bat") Bat
+      include ./blocks/top.pug
+      main(class="middle")
+        div(class="field")
+          //- div(class="start")
+          //-   button(class="start__button") Start game
+          p(class="nameGamer")= userName
+          //- button(class="button-bat") Bat
+      include ./blocks/bottom.pug
   script(src="/socket.io/socket.io.js")
   script(src="/javascript/gameField.js")

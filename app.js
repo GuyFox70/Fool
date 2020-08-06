@@ -58,11 +58,14 @@ http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
 
+const arrayStatus = [];
+let id;
+
 io.on('connection', (socket) => {
   const original = socket.id;
 
   socket.on('nameRoom', (msg) => {
-  
+    
     socket.join(msg, () => {
       if (io.nsps['/'].adapter.rooms[msg].length > 2) {
         socket.leave(msg);
@@ -73,25 +76,27 @@ io.on('connection', (socket) => {
     
   });
 
+
   // sockets = Object.keys(io.sockets.connected);
 
 
-  socket.on('getRival', (msg) => {
-    if (msg) rival = getRandomMember(sockets, original);
+  // socket.on('getRival', (msg) => {
+  //   if (msg) rival = getRandomMember(sockets, original);
 
-    setTimeout(function() {
-      if (rival) {
-        socket.emit('your rival', rival);
-      } else {
-        socket.emit('your rival', "There isn't free connections!");
-      }
+  //   setTimeout(function() {
+  //     if (rival) {
+  //       socket.emit('your rival', rival);
+  //     } else {
+  //       socket.emit('your rival', "There isn't free connections!");
+  //     }
 
-    }, 0);
+  //   }, 0);
 
-  });
+  // });
 
   socket.on('disconnect', () => {
-    sockets = Object.keys(io.sockets.connected);
+    // sockets = Object.keys(io.sockets.connected);
+    // clearInterval(id);
   });
 });
 

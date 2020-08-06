@@ -3,6 +3,7 @@
 
   const ul = document.querySelector('.listRooms__rooms');
   const rooms = ul.querySelectorAll('.rooms__link');
+  const arrayRooms = ul.getAttribute('data-listRooms');
 
   socket.on('busy', (msg) => {
   
@@ -13,4 +14,5 @@
       socket.emit('nameRoom', this.innerHTML);
     });
   }
+
 })();

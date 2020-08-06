@@ -3,9 +3,8 @@
 
   const field = document.querySelector('.field');
   const beginner = document.querySelector('.beginner');
-  const getIn = document.querySelector('.form__button-get-in');
   const nameGamer = field.querySelector('.nameGamer');
-  const startButton = field.querySelector('.start__button');
+  // const startButton = field.querySelector('.start__button');
 
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
@@ -27,34 +26,15 @@
 
   createCards(arrayCards, field);
 
-  socket.on('send name', (msg) => {
-    console.log(msg);
-  });
- 
-  getIn.addEventListener('click', (e) => {
-  
-    beginner.classList.add('hide');
+  // startButton.addEventListener('click', () => {
+  //   socket.emit('getRival', true);
 
-    me.name = inputName.value;
-    nameGamer.innerText = inputName.value;
+  //   startButton.parentElement.classList.add('hide');
+  // });
 
-    createAvatar(field);
-    inputName.value = '';
-
-    socket.emit('login', true);
-    e.preventDefault();
-   
-  });
-
-  startButton.addEventListener('click', () => {
-    socket.emit('getRival', true);
-
-    startButton.parentElement.classList.add('hide');
-  });
-
-  field.addEventListener('click', (e) => {
-    makeMove(e.target);
-  });
+  // field.addEventListener('click', (e) => {
+  //   makeMove(e.target);
+  // });
 
 
 

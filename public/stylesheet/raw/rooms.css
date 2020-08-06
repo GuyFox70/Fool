@@ -18,12 +18,14 @@
   border: 0;
   border-radius: 15px;
   position: relative;
+  cursor: pointer;
   display: flex;
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
 }
 .rooms__items a {
+  width: 100%;
   color: #fff;
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;

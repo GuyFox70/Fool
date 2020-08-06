@@ -1,6 +1,5 @@
 .top {
   height: 55px;
-  margin-bottom: 10px;
   grid-area: top;
 }
 .top .top__navigation {
