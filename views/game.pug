@@ -9,13 +9,14 @@ html(lang="en")
   body
     div(class="hide" data-images= images id="img")
     section(class="wrapper")
-      include ./blocks/top.pug
+      header(class="top")
+        include ./blocks/top.pug
       main(class="middle")
         div(class="field")
-          //- div(class="start")
-          //-   button(class="start__button") Start game
+          include ./blocks/listRooms.pug
           p(class="nameGamer")= userName
-          //- button(class="button-bat") Bat
-      include ./blocks/bottom.pug
+      footer(class="bottom") 
+        include ./blocks/bottom.pug
   script(src="/socket.io/socket.io.js")
-  script(src="/javascript/gameField.js")
+  script(src="/javascript/listRooms.js")
+  //- script(src="/javascript/gameField.js")

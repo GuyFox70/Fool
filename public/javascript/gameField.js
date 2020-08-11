@@ -1,13 +1,13 @@
 (() => {
-  const socket = io();
+  // const socket = io();
 
   const field = document.querySelector('.field');
-  const beginner = document.querySelector('.beginner');
   const nameGamer = field.querySelector('.nameGamer');
-  // const startButton = field.querySelector('.start__button');
+  const startButton = field.querySelector('.start__button');
 
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
+  const nameRoom = field.getAttribute('data-room');
 
   let me = {};
 
@@ -26,11 +26,11 @@
 
   createCards(arrayCards, field);
 
-  // startButton.addEventListener('click', () => {
-  //   socket.emit('getRival', true);
+  startButton.addEventListener('click', () => {
+    startButton.parentElement.classList.add('hide');
 
-  //   startButton.parentElement.classList.add('hide');
-  // });
+    givingOfCards(cards, gameCards);
+  });
 
   // field.addEventListener('click', (e) => {
   //   makeMove(e.target);
