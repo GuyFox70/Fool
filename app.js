@@ -62,7 +62,12 @@ io.on('connection', (socket) => {
 
   socket.on('nameRoom', (msg) => {
     socket.join(msg);
-    console.log(io.sockets.adapter.rooms);
+    console.log(io.sockets.adapter.rooms[msg].length);
+    if (io.sockets.adapter.rooms[msg].length > 2) {
+      socket.leave(msg);
+      console.log('jkdfs');
+      socket.emit('busy', true);
+    }
   });
 
   socket.on('disconnect', () => {

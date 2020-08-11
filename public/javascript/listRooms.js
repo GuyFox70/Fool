@@ -2,6 +2,7 @@
   const socket = io();
 
   const ul = document.querySelector('.listRooms__rooms');
+  const warning = document.querySelector('.warning');
   const rooms = ul.querySelectorAll('.rooms__link');
   const arrayRooms = ul.getAttribute('data-listRooms');
 
@@ -11,7 +12,12 @@
     });
   }
 
-  // socket.on('busy', (msg) => {
-  //   console.log(msg);
-  // }); 
+  socket.on('busy', (msg) => {
+    warning.classList.add('showWarning');
+
+    setTimeout(function() {
+      console.log('yes');
+      warning.classList.add('hideWarning');
+    }, 3000);
+  }); 
 })();
