@@ -5,6 +5,7 @@
   align-items: center;
   flex-direction: column;
   background: #7c7474;
+  border-radius: 10px;
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +13,7 @@
 }
 .listRooms .listRooms__userName {
   color: #ffff;
-  margin: 3.5% 0 2.5% 0;
+  margin: 2% 0 2% 0;
   font-family: 'RobotoItalic';
   font-size: 25px;
 }
@@ -21,7 +22,6 @@
   height: 30px;
   margin-bottom: 30px;
   background: #273439;
-  border: 0;
   border-radius: 15px;
   position: relative;
   cursor: pointer;
@@ -60,10 +60,6 @@
 }
 .rooms__items a:active:after {
   opacity: 0;
-}
-.rooms__items .rooms__items__status {
-  color: white;
-  font-family: 'Nunito Sans', sans-serif;
 }
 .rooms__items:last-child {
   margin-bottom: 0;

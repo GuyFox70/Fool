@@ -48,6 +48,7 @@
   margin: 10px 0 20px 0;
 }
 .middle__wrap-form .wrap-form__form .form__field-name {
+  width: 45%;
   margin-bottom: 20px;
   color: white;
 }
@@ -58,6 +59,7 @@
   font-size: calc(15px + 0.3vw);
 }
 .middle__wrap-form .wrap-form__form .form__field-name input[name="name"] {
+  width: 100%;
   border: 0;
   outline: 0;
   border-radius: 5px;
@@ -77,15 +79,4 @@
   cursor: pointer;
   font-family: 'RobotoItalic';
   font-size: calc(15px + 0.3vw);
-}
-@keyframes form {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.showForm {
-  animation: form 1s linear;
 }

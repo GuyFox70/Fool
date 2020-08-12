@@ -4,7 +4,7 @@
   const ul = document.querySelector('.listRooms__rooms');
   const warning = document.querySelector('.warning');
   const rooms = ul.querySelectorAll('.rooms__link');
-  const arrayRooms = ul.getAttribute('data-listRooms');
+  const listRooms = document.querySelector('.listRooms');
 
   for (let room of rooms) {
     room.addEventListener('click', function() {
@@ -13,11 +13,16 @@
   }
 
   socket.on('busy', (msg) => {
-    warning.classList.add('showWarning');
+
+    warning.style = "top: 70px; transition: top 1s linear";
 
     setTimeout(function() {
-      console.log('yes');
-      warning.classList.add('hideWarning');
+      warning.style = "top: -70px; transition: top 1s linear";
     }, 3000);
-  }); 
+
+  });
+  
+  socket.on('free', (msg) => {
+    listRooms.classList.add('hide');
+  });
 })();

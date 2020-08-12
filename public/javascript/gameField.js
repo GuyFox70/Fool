@@ -1,5 +1,4 @@
 (() => {
-  // const socket = io();
 
   const field = document.querySelector('.field');
   const nameGamer = field.querySelector('.nameGamer');

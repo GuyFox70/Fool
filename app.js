@@ -62,11 +62,12 @@ io.on('connection', (socket) => {
 
   socket.on('nameRoom', (msg) => {
     socket.join(msg);
-    console.log(io.sockets.adapter.rooms[msg].length);
+
     if (io.sockets.adapter.rooms[msg].length > 2) {
       socket.leave(msg);
-      console.log('jkdfs');
       socket.emit('busy', true);
+    } else {
+      socket.emit('free', false);
     }
   });
 
@@ -75,33 +76,3 @@ io.on('connection', (socket) => {
     // clearInterval(id);
   });
 });
-
-function getRandomMember(arr, user) {
-  if (arr.length > 1) {
-
-    let num = (getRandomInt(0, arr.length - 1));
-    let member = arr.splice(num, 1);
-
-    if (user != member[0]) {
-      return member[0];
-    } else {
-
-      arr.push(member[0]);
-
-      if (num == arr.length - 1) {
-        return arr[num--];
-      } else if (num == 0) {
-        return arr[num++];
-      } else {
-        return arr[num++];
-      }
-    }
-  } else {
-    return undefined;
-  }
-  
-}
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}

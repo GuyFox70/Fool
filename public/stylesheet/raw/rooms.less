@@ -1,10 +1,12 @@
 .listRooms {
   width: 100%;
   height: 100%;
+  
   display: flex;
   align-items: center;
   flex-direction: column;
   background: rgb(124, 116, 116);
+  border-radius: 10px;
 
   position: absolute;
   top: 0;
@@ -13,7 +15,7 @@
 
   .listRooms__userName {
     color: #ffff;
-    margin: 3.5% 0 2.5% 0;
+    margin: 2% 0 2% 0;
 
     font-family: 'RobotoItalic';
     font-size: 25px;
@@ -25,7 +27,6 @@
   height: 30px;
   margin-bottom: 30px;
   background: #273439;
-  border: 0;
   border-radius: 15px;
   position: relative;
   cursor: pointer;
@@ -69,11 +70,6 @@
   
   a:active:after {
     opacity: 0;
-  }
-
-  .rooms__items__status {
-    color: white;
-    font-family: 'Nunito Sans', sans-serif;
   }
 }
 
