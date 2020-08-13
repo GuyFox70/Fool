@@ -2,7 +2,7 @@
 
   const field = document.querySelector('.field');
   const nameGamer = field.querySelector('.nameGamer');
-  const startButton = field.querySelector('.start__button');
+  const startButton = field.querySelector('.container-button__start');
 
   const images = document.querySelector('#img');
   const arrayCards = images.getAttribute('data-images');
@@ -28,7 +28,14 @@
   startButton.addEventListener('click', () => {
     startButton.parentElement.classList.add('hide');
 
-    givingOfCards(cards, gameCards);
+    createAvatar(field);
+
+    socket.emit('checkNumberOfGamers', '???');
+    // givingOfCards(cards, gameCards);
+  });
+
+  socket.on('numberOfGamers', (msg) => {
+    console.log(msg);
   });
 
   // field.addEventListener('click', (e) => {

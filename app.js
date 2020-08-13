@@ -58,18 +58,26 @@ http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
 
+let nameRoom;
+
 io.on('connection', (socket) => {
 
   socket.on('nameRoom', (msg) => {
-    socket.join(msg);
+    nameRoom = msg;
 
-    if (io.sockets.adapter.rooms[msg].length > 2) {
-      socket.leave(msg);
+    socket.join(nameRoom);
+
+    if (io.sockets.adapter.rooms[nameRoom].length > 2) {
+      socket.leave(nameRoom);
       socket.emit('busy', true);
     } else {
       socket.emit('free', false);
     }
   });
+
+  socket.on('checkNumberOfGamers', (msg) => {
+    socket.emit('numberOfGamers', nameRoom);
+  })
 
   socket.on('disconnect', () => {
     // sockets = Object.keys(io.sockets.connected);

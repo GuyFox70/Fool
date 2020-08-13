@@ -1,5 +1,4 @@
 (() => {
-  const socket = io();
 
   const ul = document.querySelector('.listRooms__rooms');
   const warning = document.querySelector('.warning');
