@@ -4,6 +4,8 @@ const favicon = require('express-favicon');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
+const arrayMixCards = require('./utils/getListCards');
 const cssClean = require('./public/stylesheet/cleanCSS');
 const compressImages = require('./public/images/compressImage');
 
@@ -58,7 +60,7 @@ http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
 
-let nameRoom;
+let nameRoom, cards;
 
 io.on('connection', (socket) => {
 
@@ -67,20 +69,31 @@ io.on('connection', (socket) => {
 
     socket.join(nameRoom);
 
-    if (io.sockets.adapter.rooms[nameRoom].length > 2) {
+    let sizeRoom = io.sockets.adapter.rooms[nameRoom].length;
+
+    if (sizeRoom > 2) {
       socket.leave(nameRoom);
-      socket.emit('busy', true);
+      socket.emit('status', true);
     } else {
-      socket.emit('free', false);
+      socket.emit('status', false);
+    }
+
+    if (sizeRoom == 2) {
+      let members = Object.keys(io.sockets.adapter.rooms[nameRoom].sockets);
+      let cards = arrayMixCards();
+
+      for (let member of members) {
+        if (member != socket.id) {
+          socket.to(member).emit('getMixCards', cards);
+        } else {
+          socket.emit('getMixCards', cards);
+        }
+      }
     }
   });
 
-  socket.on('checkNumberOfGamers', (msg) => {
-    socket.emit('numberOfGamers', nameRoom);
-  })
-
   socket.on('disconnect', () => {
+    socket.leave(nameRoom);
     // sockets = Object.keys(io.sockets.connected);
-    // clearInterval(id);
   });
 });

@@ -11,17 +11,17 @@
     });
   }
 
-  socket.on('busy', (msg) => {
+  socket.on('status', (msg) => {
 
-    warning.style = "top: 70px; transition: top 1s linear";
+    if (msg) {
+      warning.style = "top: 70px; transition: top 1s linear";
 
-    setTimeout(function() {
-      warning.style = "top: -70px; transition: top 1s linear";
-    }, 3000);
+      setTimeout(function() {
+        warning.style = "top: -70px; transition: top 1s linear";
+      }, 3000);
+    } else {
+      listRooms.classList.add('hide');
+    }
 
-  });
-  
-  socket.on('free', (msg) => {
-    listRooms.classList.add('hide');
   });
 })();
