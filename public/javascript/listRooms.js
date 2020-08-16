@@ -8,8 +8,11 @@
 
   for (let room of rooms) {
     room.addEventListener('click', function() {
-      socket.emit('nameRoom', this.innerHTML);
-      socket.emit('sendUserServer', userName);
+      socket.emit('nameRoomAndUser', {
+        room: this.innerHTML,
+        user: userName
+      });
+      // socket.emit('sendUserServer', userName);
     });
   }
 

@@ -2,6 +2,7 @@
 
   const field = document.querySelector('.field');
   const startButton = field.querySelector('.container-button__start');
+  const rivalName = document.querySelector('.rivalName');
 
   let [topOdd, leftOdd] = [5, 90];
   let [topEven, leftEven] = [72, 10];
@@ -17,6 +18,14 @@
 
   createCards(field);
 
+  socket.on('getNameRival', (msg) => {
+    rivalName.innerHTML = msg;
+  });
+
+  socket.on('getMixCards', (msg) => {
+    deckMixCards = msg;
+  });
+
   // const cards = createCards(arrayCards, field);
 
   startButton.addEventListener('click', () => {
@@ -28,10 +37,6 @@
 
   document.addEventListener('beforeunload', () => {
 
-  });
-
-  socket.on('getMixCards', (msg) => {
-    deckMixCards = msg;
   });
 
   // created function down
