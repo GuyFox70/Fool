@@ -4,10 +4,12 @@
   const warning = document.querySelector('.warning');
   const rooms = ul.querySelectorAll('.rooms__link');
   const listRooms = document.querySelector('.listRooms');
+  const userName = document.querySelector('.userName').innerHTML;
 
   for (let room of rooms) {
     room.addEventListener('click', function() {
       socket.emit('nameRoom', this.innerHTML);
+      socket.emit('sendUserServer', userName);
     });
   }
 

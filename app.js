@@ -60,7 +60,7 @@ http.listen(config.get('customer.port'), () => {
   console.log('server works!!!');
 });
 
-let nameRoom, cards;
+let nameRoom, userName, rivalName;
 
 io.on('connection', (socket) => {
 
@@ -90,6 +90,10 @@ io.on('connection', (socket) => {
         }
       }
     }
+
+    socket.on('sendUserServer', (msg) => {
+      userName = msg;
+    });
   });
 
   socket.on('disconnect', () => {

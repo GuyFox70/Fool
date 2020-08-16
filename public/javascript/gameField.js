@@ -1,14 +1,7 @@
 (() => {
 
   const field = document.querySelector('.field');
-  const nameGamer = field.querySelector('.nameGamer');
   const startButton = field.querySelector('.container-button__start');
-
-  const images = document.querySelector('#img');
-  const arrayCards = images.getAttribute('data-images');
-  const nameRoom = field.getAttribute('data-room');
-
-  let me = {};
 
   let [topOdd, leftOdd] = [5, 90];
   let [topEven, leftEven] = [72, 10];
@@ -19,8 +12,8 @@
   let zIndexForMove = 0;
   
   let j = 0;
-  const num = 36;
   let timerId, gamer, deckMixCards;
+  const num = 36;
 
   createCards(field);
 
