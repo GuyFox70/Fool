@@ -3,6 +3,7 @@
   const field = document.querySelector('.field');
   const startButton = field.querySelector('.container-button__start');
   const rivalName = document.querySelector('.rivalName');
+  const waiting = document.querySelector('.waiting');
 
   let [topOdd, leftOdd] = [5, 90];
   let [topEven, leftEven] = [72, 10];
@@ -26,12 +27,22 @@
     deckMixCards = msg;
   });
 
+  socket.on('state', (msg) => {
+    if (msg == 2) {
+      waiting.classList.add('hide');
+    } else {
+      waiting.classList.remove('hide');
+    }
+  });
+
   // const cards = createCards(arrayCards, field);
 
   startButton.addEventListener('click', () => {
     startButton.parentElement.classList.add('hide');
 
     createAvatar(field);
+
+    socket.emit('checkState', 'ready');
 
   });
 
