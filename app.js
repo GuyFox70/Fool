@@ -104,13 +104,6 @@ io.on('connection', (socket) => {
 
   });
 
-  socket.on('checkState', (msg) => {
-    objUsers['state'].push(msg);
-
-    socket.emit('state', objUsers['state'].length);
-    socket.to(nameRoom).emit('state', objUsers['state'].length);
-  })
-
   socket.on('disconnect', () => {
     socket.leave(nameRoom);
     // sockets = Object.keys(io.sockets.connected);

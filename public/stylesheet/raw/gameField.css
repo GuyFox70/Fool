@@ -1,3 +1,8 @@
+.avatarDefaultCss {
+  width: 50px;
+  height: 50px;
+  border: 1px solid red;
+}
 .field {
   width: 100%;
   height: 100%;
@@ -20,13 +25,21 @@
   top: 2%;
   right: 2%;
 }
-.gamerDefaultAvatar {
+.gamerDefaultAvatarLeft {
   width: 50px;
   height: 50px;
   border: 1px solid red;
   position: absolute;
   bottom: 8%;
   left: 2%;
+}
+.gamerDefaultAvatarRight {
+  width: 50px;
+  height: 50px;
+  border: 1px solid red;
+  position: absolute;
+  top: 8%;
+  right: 2%;
 }
 .warning {
   line-height: 50px;

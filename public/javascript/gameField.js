@@ -18,9 +18,13 @@
   const num = 36;
 
   createCards(field);
-
+  createAvatar(field, 'gamerDefaultAvatarLeft');
+  // gamerDefaultAvatarRight
   socket.on('getNameRival', (msg) => {
     rivalName.innerHTML = msg;
+    createAvatar(field, 'gamerDefaultAvatarRight');
+
+    waiting.classList.add('hide');
   });
 
   socket.on('getMixCards', (msg) => {
@@ -33,17 +37,6 @@
     } else {
       waiting.classList.remove('hide');
     }
-  });
-
-  // const cards = createCards(arrayCards, field);
-
-  startButton.addEventListener('click', () => {
-    startButton.parentElement.classList.add('hide');
-
-    createAvatar(field);
-
-    socket.emit('checkState', 'ready');
-
   });
 
   document.addEventListener('beforeunload', () => {
@@ -170,10 +163,10 @@
   //   return elements;
   // }
 
-  function createAvatar(parent) {
+  function createAvatar(parent, nameClass) {
     const img = document.createElement('img');
       img.src = '/images/compress/defaultAvatar.png';
-      img.classList.add('gamerDefaultAvatar');
+      img.classList.add(nameClass);
     parent.appendChild(img);
   }
 
