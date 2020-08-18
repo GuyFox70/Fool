@@ -14,15 +14,17 @@
   let zIndexForMove = 0;
   
   let j = 0;
-  let timerId, gamer, deckMixCards;
+  let deckMixCards;
   const num = 36;
 
-  createCards(field);
+  createCard(field);
   createAvatar(field, 'gamerDefaultAvatarLeft');
-  // gamerDefaultAvatarRight
-  socket.on('getNameRival', (msg) => {
-    rivalName.innerHTML = msg;
+  
+  socket.on('getRival', (msg) => {
+    rivalName.innerHTML = msg.userName;
     createAvatar(field, 'gamerDefaultAvatarRight');
+
+    givingOfCards(num, field, deckMixCards, msg.gamer);
 
     waiting.classList.add('hide');
   });
@@ -69,10 +71,10 @@
     }
   }
 
-  function givingOfCards(num, parent, gameCards) {
+  function givingOfCards(num, parent, gameCards, gamer) {
     j++;
 
-    if ((num - j) % 2 != 0) {
+    if ((num - j) % 2 != 0 && gamer) {
 
       givingOfOddCards(num, parent, gameCards);
     } else {
@@ -84,19 +86,21 @@
     } else {
       j++;
 
-      const trump_card = document.createElement('img');
-        trump_card.src = `/images/compress/cards/${gameCards.splice(-1, 1)[0]}`;
-        trump_card.setAttribute('data-trump', 'trump');
-        trump_card.style.left = '150px';
+      const trumpCard = document.createElement('img');
+          trumpCard.src = `/images/compress/cards/${gameCards.splice(-1, 1)[0]}`;
+          trumpCard.setAttribute('data-trump', 'trump');
+          trumpCard.style.left = '150px';
+          trumpCard.classList.add('deckOfCards');
+          trumpCard.classList.add('cardBorderRadius');
 
-        parent.appendChild(card);
+        parent.appendChild(trumpCard);
     }
 
   }
 
   function givingOfOddCards(num, parent, gameCards) {
     leftOdd = leftOdd - 2.5;
-    console.log(gameCards);
+  
     const card = document.createElement('img');
 
     card.style.top = topOdd + '%';
@@ -104,6 +108,8 @@
     card.style.background = 'none';
     card.src = `/images/compress/cards/${gameCards.splice(num - j, 1)[0]}`;
     card.setAttribute('data-gamer', 'gamer_2');
+    card.classList.add('deckOfCards');
+    card.classList.add('cardBorderRadius');
 
     parent.appendChild(card);
   }
@@ -120,29 +126,22 @@
     card.style.background = 'none';
     card.src = `/images/compress/cards/${gameCards.splice(num - j, 1)[0]}`;
     card.setAttribute('data-gamer', 'gamer_1');
+    card.classList.add('deckOfCards');
+    card.classList.add('cardBorderRadius');
 
     parent.appendChild(card);
   }
-
-  // function getObjCards(arr) {
-  //   let obj = {};
-
-  //   for(let i = 0; i < arr.length; i++) {
-  //     obj[i] = arr[i];
-  //   }
-  //   return obj;
-  // }
   
 
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function createCards(parent) {
+  function createCard(parent) {
     const img = document.createElement('img');
       img.src = '/images/compress/background/back.jpg';
-      img.classList.add('deck_of_cards');
-      img.classList.add('cards');
+      img.classList.add('deckOfCards');
+      img.classList.add('cardBorderRadius');
 
     parent.appendChild(img);
   }

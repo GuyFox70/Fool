@@ -12,7 +12,6 @@
         room: this.innerHTML,
         user: userName
       });
-      // socket.emit('sendUserServer', userName);
     });
   }
 

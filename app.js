@@ -62,7 +62,8 @@ http.listen(config.get('customer.port'), () => {
 
 let nameRoom;
 let objUsers = {};
-objUsers['state'] = [];
+    objUsers.user1 = {};
+    objUsers.user2 = {};
 
 io.on('connection', (socket) => {
 
@@ -77,16 +78,16 @@ io.on('connection', (socket) => {
       socket.leave(nameRoom);
       socket.emit('status', true);
     } else if(sizeRoom != 2) {
-      objUsers['userName_1'] = msg.user;
-      objUsers['id_1'] = socket.id;
+      objUsers.user1.userName = msg.user;
+      objUsers.user1.gamer = 0;
       socket.emit('status', false);
     }
 
     if (sizeRoom == 2) {
       socket.emit('status', false);
 
-      objUsers['userName_2'] = msg.user;
-      objUsers['id_2'] = socket.id;
+      objUsers.user2.userName = msg.user;
+      objUsers.user2.gamer = 1;
       
       let members = Object.keys(io.sockets.adapter.rooms[nameRoom].sockets);
       let cards = arrayMixCards();
@@ -94,9 +95,9 @@ io.on('connection', (socket) => {
       for (let member of members) {
         if (member != socket.id) {
           socket.to(member).emit('getMixCards', cards);
-          socket.to(nameRoom).emit('getNameRival',  objUsers['userName_2']);
+          socket.to(nameRoom).emit('getRival',  objUsers.user2);
         } else {
-          socket.emit('getNameRival',  objUsers['userName_1']);
+          socket.emit('getRival',  objUsers.user1);
           socket.emit('getMixCards', cards);
         }
       }
