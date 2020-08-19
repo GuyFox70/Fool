@@ -1,7 +1,6 @@
 (() => {
 
   const field = document.querySelector('.field');
-  const startButton = field.querySelector('.container-button__start');
   const rivalName = document.querySelector('.rivalName');
   const waiting = document.querySelector('.waiting');
 
@@ -10,27 +9,26 @@
 
   let [leftMove, topMove] = [23, 33];
 
-  let zIndexForGamer = 0;
+  let zIndexForEven = 0;
+  let zIndexForOdd = 6;
   let zIndexForMove = 0;
   
   let j = 0;
-  let deckMixCards;
-  const num = 36;
+  let num = 36;
+  let step = 2.5;
 
-  createCard(field);
+
+  createDeck(field);
   createAvatar(field, 'gamerDefaultAvatarLeft');
   
   socket.on('getRival', (msg) => {
     rivalName.innerHTML = msg.userName;
     createAvatar(field, 'gamerDefaultAvatarRight');
 
-    givingOfCards(num, field, deckMixCards, msg.gamer);
+    givingOfCards(num, field, msg.mixCards, step);
+    // givingOfCards(num, field, msg.mixCards);
 
     waiting.classList.add('hide');
-  });
-
-  socket.on('getMixCards', (msg) => {
-    deckMixCards = msg;
   });
 
   socket.on('state', (msg) => {
@@ -71,18 +69,19 @@
     }
   }
 
-  function givingOfCards(num, parent, gameCards, gamer) {
+  function givingOfCards(num, parent, gameCards, step) {
     j++;
-
-    if ((num - j) % 2 != 0 && gamer) {
-
-      givingOfOddCards(num, parent, gameCards);
+    
+    if ((num - j) % 2 != 0) {
+      givingOfOddCards(num, parent, gameCards, step);
+      // givingOfOddCards(num, parent, gameCards);
     } else {
-      givingOfEvenCards(num, parent, gameCards);
+      givingOfEvenCards(num, parent, gameCards, step);
+      // givingOfEvenCards(num, parent, gameCards);
     }
  
     if (j < 12 ) {
-      givingOfCards(num, parent, gameCards);
+      givingOfCards(num, parent, gameCards, step);
     } else {
       j++;
 
@@ -98,14 +97,19 @@
 
   }
 
-  function givingOfOddCards(num, parent, gameCards) {
-    leftOdd = leftOdd - 2.5;
+  function givingOfOddCards(num, parent, gameCards, step) {
+    //use for odd value
+    leftOdd = leftOdd - step;
+    zIndexForOdd--;
+    // console.log(top, shift);
+    // createCards(num, gameCards, parent, top, shift, zIndexForGamer);
   
     const card = document.createElement('img');
 
     card.style.top = topOdd + '%';
     card.style.left = leftOdd + '%';
     card.style.background = 'none';
+    card.style.zIndex = zIndexForOdd;
     card.src = `/images/compress/cards/${gameCards.splice(num - j, 1)[0]}`;
     card.setAttribute('data-gamer', 'gamer_2');
     card.classList.add('deckOfCards');
@@ -114,15 +118,18 @@
     parent.appendChild(card);
   }
 
-  function givingOfEvenCards(num, parent, gameCards) {
-    leftEven = leftEven + 2.5;
-    zIndexForGamer++;
+  function givingOfEvenCards(num, parent, gameCards, step) {
+    //use for even value
+    leftEven = leftEven + step;
+    zIndexForEven++;
+    // console.log(top, shift);
+    // createCards(num, gameCards, parent, top, shift, zIndexForGamer);
     
     const card = document.createElement('img');
     
     card.style.top = topEven + '%';
     card.style.left = leftEven + '%';
-    card.style.zIndex = zIndexForGamer;
+    card.style.zIndex = zIndexForEven;
     card.style.background = 'none';
     card.src = `/images/compress/cards/${gameCards.splice(num - j, 1)[0]}`;
     card.setAttribute('data-gamer', 'gamer_1');
@@ -137,7 +144,7 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  function createCard(parent) {
+  function createDeck(parent) {
     const img = document.createElement('img');
       img.src = '/images/compress/background/back.jpg';
       img.classList.add('deckOfCards');
@@ -146,21 +153,20 @@
     parent.appendChild(img);
   }
 
-  // function createCards(arr, parent) {
-  //   let elements = [];
+  function createCards(num, gameCards, parent, top, shift, zIndexForGamer) {
+    const card = document.createElement('img');
 
-  //   for (let elem of  JSON.parse(arr)) {
+    card.style.top = top + '%';
+    card.style.left = shift + '%';
+    if (zIndexForGamer != undefined) card.style.zIndex = zIndexForGamer;
+    card.style.background = 'none';
+    card.src = `/images/compress/cards/${gameCards.splice(num - j, 1)[0]}`;
+    card.setAttribute('data-gamer', 'gamer_2');
+    card.classList.add('deckOfCards');
+    card.classList.add('cardBorderRadius');
 
-  //     const img = document.createElement('img');
-  //       img.src = '/images/compress/background/back.jpg';
-  //       img.classList.add('deck_of_cards');
-  //       img.classList.add('cards');
-
-  //     parent.appendChild(img);
-  //     elements.push(img);
-  //   }
-  //   return elements;
-  // }
+    parent.appendChild(card);
+  }
 
   function createAvatar(parent, nameClass) {
     const img = document.createElement('img');

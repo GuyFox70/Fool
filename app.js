@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
       socket.emit('status', true);
     } else if(sizeRoom != 2) {
       objUsers.user1.userName = msg.user;
-      objUsers.user1.gamer = 0;
+      objUsers.user1.gamer = 1;
       socket.emit('status', false);
     }
 
@@ -87,18 +87,18 @@ io.on('connection', (socket) => {
       socket.emit('status', false);
 
       objUsers.user2.userName = msg.user;
-      objUsers.user2.gamer = 1;
+      objUsers.user2.gamer = 2;
       
       let members = Object.keys(io.sockets.adapter.rooms[nameRoom].sockets);
       let cards = arrayMixCards();
+          objUsers.user1.mixCards = cards;
+          objUsers.user2.mixCards = cards;
 
       for (let member of members) {
-        if (member != socket.id) {
-          socket.to(member).emit('getMixCards', cards);
+        if (member == socket.id) {
           socket.to(nameRoom).emit('getRival',  objUsers.user2);
         } else {
           socket.emit('getRival',  objUsers.user1);
-          socket.emit('getMixCards', cards);
         }
       }
     }
