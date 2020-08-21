@@ -80,6 +80,7 @@ io.on('connection', (socket) => {
     } else if(sizeRoom != 2) {
       objUsers.user1.userName = msg.user;
       objUsers.user1.gamer = 1;
+      objUsers.user1._id = socket.id;
       socket.emit('status', false);
     }
 
@@ -88,6 +89,7 @@ io.on('connection', (socket) => {
 
       objUsers.user2.userName = msg.user;
       objUsers.user2.gamer = 2;
+      objUsers.user2._id = socket.id;
       
       let members = Object.keys(io.sockets.adapter.rooms[nameRoom].sockets);
       let cards = arrayMixCards();
@@ -102,6 +104,18 @@ io.on('connection', (socket) => {
         }
       }
     }
+
+    socket.on('send cards rival_1', (msg) => {
+
+      socket.to(objUsers.user1._id).emit('get cards rival_1', msg);
+
+    });
+
+    socket.on('send cards rival_2', (msg) => {
+
+      socket.to(objUsers.user2._id).emit('get cards rival_2', msg);
+
+    });
 
   });
 

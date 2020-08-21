@@ -23,7 +23,7 @@
   font-family: 'RobotoItalic';
   position: absolute;
   top: 2%;
-  right: 2%;
+  right: 31%;
 }
 .gamerDefaultAvatarLeft {
   width: 50px;
@@ -39,7 +39,7 @@
   border: 1px solid red;
   position: absolute;
   top: 8%;
-  right: 2%;
+  right: 31%;
 }
 .warning {
   line-height: 50px;
