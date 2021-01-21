@@ -19,7 +19,7 @@
         "mongoose": "^5.9.7",
         "pngquant-bin": "^5.0.2",
         "pug": "^2.0.4",
-        "socket.io": "^2.3.0",
+        "socket.io": "^2.4.0",
         "websocket": "^1.0.31"
     },
     "devDependencies": {
