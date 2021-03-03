@@ -18,7 +18,7 @@
         "mongodb": "^3.5.5",
         "mongoose": "^5.9.7",
         "pngquant-bin": "^5.0.2",
-        "pug": "^2.0.4",
+        "pug": "^3.0.1",
         "socket.io": "^2.3.0",
         "websocket": "^1.0.31"
     },
